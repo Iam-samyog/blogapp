@@ -1,0 +1,74 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+
+
+</head>
+<body>
+    
+    <div class="page-header">
+        {% if user.is_authenticated %}
+        <form action="{% url 'logout' %}" method="POST"  class="top-menu ">
+        {% csrf_token %}
+        <button type="submit" class="link">
+            
+                <span class="material-symbols-outlined lg-icons">
+                    logout
+                    </span>
+            </button>
+        
+    </form>
+    
+        <a href="{% url 'draft-list' %}" class="top-menu">
+            <span class="material-symbols-outlined lg-icons">
+                draft
+                </span>
+        </a>
+        <a href="{% url 'post-create' %}" class="top-menu ">
+            <span class="material-symbols-outlined lg-icons">
+                add
+                </span>
+          
+        </a>
+        {% else %}
+        
+        <a href="{% url 'login' %}" class="top-menu ">
+           
+                <span class="material-symbols-outlined lg-icons" >
+                    login
+                    </span>
+        </a>
+        {% endif %}
+
+
+        <div class="container">
+        <h1>
+            <a href="/">
+                <img src="{% static 'img/favicon.ico' %}" alt="Personal Blog" width="98px">
+                Personal Blog
+            </a>
+        </h1>
+    </div>
+    </div>
+    <div class="container">
+    {% block content %}
+
+
+
+
+
+    {% endblock content %}
+</div>
+
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+</body>
+</html>

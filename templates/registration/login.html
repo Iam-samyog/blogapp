@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if form.errors and form.non_field_errors %}
+    {{ form.non_field_errors }}
+    {% endif %}
+
+
+<form action="" method="POST"  class="m-2 ">
+{% csrf_token %}
+    <div class="mb-2">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" name="username" placeholder="Enter username">
+        {{ form.username.errors }}
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Passwords</label>
+        <input type="password" class="form-control" name="password" placeholder="Enter your password..">
+        {{ form.password.errors }}
+    </div>
+    <button type="submit" class="btn btn-success">Login</button>
+    
+
+</form>
+
+
+
+
+{% endblock  %}
